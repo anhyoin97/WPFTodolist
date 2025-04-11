@@ -19,3 +19,12 @@ C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\refint\T
 C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\TODOLIST.pdb
 C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\TODOLIST.genruntimeconfig.cache
 C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\ref\TODOLIST.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\bin\Release\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\TODOLIST.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\TODOLIST.sourcelink.json
+C:\Users\User\source\repos\TODOLIST\TODOLIST\obj\Release\net8.0-windows\TODOLIST.csproj.Up2Date

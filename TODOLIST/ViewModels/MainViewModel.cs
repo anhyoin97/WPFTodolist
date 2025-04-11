@@ -1,57 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using TODOLIST.Data;
 using TODOLIST.Models;
 
 namespace TODOLIST.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private string _newTodo;
-        public string NewTodo
+        private readonly TodoRepository _repository = new TodoRepository();
+
+        private string _newTodoTitle;
+        public string NewTodoTitle
         {
-            get => _newTodo;
+            get => _newTodoTitle;
             set
             {
-                _newTodo = value;
+                _newTodoTitle = value;
                 OnPropertyChanged();
-                // AddCommand 버튼의 활성화 상태를 다시 체크
-                (AddCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
         }
 
-        public ObservableCollection<TodoItem> TodoList { get; set; }
+        public ObservableCollection<TodoItem> Todos { get; set; } = new();
 
         public ICommand AddCommand { get; }
-        public ICommand RemoveCommand { get; }
 
         public MainViewModel()
         {
-            TodoList = new ObservableCollection<TodoItem>();
-            AddCommand = new RelayCommand(AddTodo, () => !string.IsNullOrWhiteSpace(NewTodo));
-            RemoveCommand = new RelayCommand<TodoItem>(RemoveTodo);
+            LoadTodos();
+            AddCommand = new RelayCommand(AddTodo);
+        }
+
+        private void LoadTodos()
+        {
+            var todosFromDb = _repository.GetTodos();
+            Todos.Clear();
+            foreach (var todo in todosFromDb)
+                Todos.Add(todo);
         }
 
         private void AddTodo()
         {
-            TodoList.Add(new TodoItem { Content = NewTodo });
-            NewTodo = string.Empty;
+            if (!string.IsNullOrWhiteSpace(NewTodoTitle))
+            {
+                _repository.AddTodo(NewTodoTitle);
+                NewTodoTitle = string.Empty;
+                LoadTodos(); // 새로고침
+            }
         }
 
-        private void RemoveTodo(TodoItem item)
-        {
-            if (TodoList.Contains(item))
-                TodoList.Remove(item);
-        }
-
+        // === INotifyPropertyChanged 구현 ===
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
